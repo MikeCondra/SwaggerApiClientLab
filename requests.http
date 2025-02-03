@@ -1,0 +1,59 @@
+@baseurl = http://localhost:5000
+
+### SWAGGER AS JSON
+GET {{baseurl}}/swagger/v1/swagger.json
+Accept: application/json
+
+### SWAGGER UI: external browser to {{baseurl}}/swagger/index.html
+GET {{baseurl}}/swagger/index.html
+Accept: application/json
+
+### GET USER ID=1
+GET {{baseurl}}/api/user/1
+Accept: application/json
+
+### DIVIDE BY 0
+GET {{baseurl}}/divideby0
+Accept: application/json
+
+### DIVISION (GLOBAL ERROR HANDLER TEST) /api/ErrorHandling/division?numerator=0&denominator=0
+GET {{baseurl}}/api/ErrorHandling/division?numerator=0&denominator=1
+Accept: application/json
+
+### HELLO WORLD
+GET {{baseurl}}
+Accept: application/json
+
+### LIST ALL PRODUCTS
+GET {{baseurl}}/api/product
+Accept: application/json
+
+
+### LIST ONE PRODUCT
+GET {{baseurl}}/api/product/1
+Accept: application/json
+Content-Type: application/json
+
+### MODIFY PRODUCT ID=1, CHANGING NAME TO "Product 3"
+PUT {{baseurl}}/api/product/1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Product 3",
+    "description": "This is a product description",
+    "price": 9.99
+}
+
+### ADD PRODUCT ID=0
+POST {{baseurl}}/api/product
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Product 3",
+    "description": "This is a product description",
+    "price": 9.99
+}

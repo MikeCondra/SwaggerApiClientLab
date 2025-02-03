@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 public class Program
 {
@@ -11,6 +12,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        //builder.Host.UseSerilog();
         var app = builder.Build();
 
         app.UseSwagger();
@@ -19,11 +21,17 @@ public class Program
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
         });
 
+        app.MapControllers();
 
         app.MapGet("/", () => $"Hello World!");
 
-        app.MapControllers();
-
+        // When running ClientGenerator
+#if TRUE
         await app.RunAsync();
+        Thread.Sleep(3000);
+
+#else
+        app.Run();
+#endif
     }
 }

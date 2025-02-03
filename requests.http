@@ -1,5 +1,9 @@
 @baseurl = http://localhost:5000
 
+### ROOT
+GET {{baseurl}}
+Accept: application/json
+
 ### SWAGGER AS JSON
 GET {{baseurl}}/swagger/v1/swagger.json
 Accept: application/json
@@ -9,7 +13,11 @@ GET {{baseurl}}/swagger/index.html
 Accept: application/json
 
 ### GET USER ID=1
-GET {{baseurl}}/api/user/1
+GET {{baseurl}}/api/User/1
+Accept: application/json
+
+### GET USER ID=1
+GET {{baseurl}}/user/1
 Accept: application/json
 
 ### DIVIDE BY 0
